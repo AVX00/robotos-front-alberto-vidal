@@ -52,7 +52,7 @@ describe("Given a NewRobot component", () => {
   });
 
   describe("When all inputs are filled", () => {
-    test("Then the submit button shouldn't be disabled and it's action performed on click", async () => {
+    test("Then the submit button shouldn't be disabled and it's action performed on click and disable the button again", async () => {
       const typedString = "joselito";
 
       renderInStore(<NewRobot />);
@@ -70,9 +70,10 @@ describe("Given a NewRobot component", () => {
       });
       userEvent.type(name, " htdthd");
       const button = screen.queryByRole("button", /create/i);
-      userEvent.click(button);
 
       expect(button).not.toBeDisabled();
+      userEvent.click(button);
+      expect(button).toBeDisabled();
       expect(mockDispatch).toHaveBeenCalled();
     });
   });
