@@ -98,7 +98,7 @@ const Robot = ({
   robot: {
     name,
     img,
-    stats: { speed, resistance, date },
+    stats: { speed, resistance, "fabrication-date": date },
   },
 }) => {
   return (
