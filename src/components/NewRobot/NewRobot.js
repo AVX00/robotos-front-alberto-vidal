@@ -38,7 +38,11 @@ const NewRobot = () => {
       resistance,
       "fabrication-date": fabricationDate,
     } = formData;
-    const robot = { name, img, stats: { speed, resistance, fabricationDate } };
+    const robot = {
+      name,
+      img,
+      stats: { speed, resistance, "fabrication-date": fabricationDate },
+    };
     dispatch(createRobotThunkCreator(robot));
   };
 
