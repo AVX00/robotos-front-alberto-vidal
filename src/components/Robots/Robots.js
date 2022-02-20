@@ -1,7 +1,6 @@
 import Robot from "../Robot/Robot";
 
 const Robots = ({ robots }) => {
-  console.log(robots);
   return (
     <ul title="robots">
       {robots

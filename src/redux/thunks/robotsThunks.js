@@ -14,13 +14,13 @@ export const loadRobotsTunk = async (dispatch) => {
 };
 
 export const createRobotThunkCreator = (robot) => async (dispatch) => {
-  const robotJson = JSON.stringify(robot);
   const response = await fetch(
-    `${process.env.REACT_APP_API_URL}create?token=${process.env.REACT_APP_TOKEN}`,
+    `http://localhost:5555/robots/create?token=${process.env.REACT_APP_TOKEN}`,
     {
       method: "post",
-      headers: { "content-type": "aplication/json" },
-      body: robotJson,
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(robot),
     }
   );
 
@@ -47,7 +47,7 @@ export const updateRobotThunkCreator = (robot) => async (dispatch) => {
     `${process.env.REACT_APP_API_URL}update/?token=${process.env.REACT_APP_TOKEN}`,
     {
       method: "put",
-      headers: { "content-type": "aplication/json" },
+      headers: { "Content-Type": "application/json" },
       body: robotJson,
     }
   );
