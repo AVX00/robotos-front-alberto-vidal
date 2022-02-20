@@ -102,7 +102,7 @@ const NewRobot = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="fabrication-date">Image URL</label>
+        <label htmlFor="fabrication-date">Fabrication Date</label>
         <input id="fabrication-date" type="date" onChange={handleDataChange} />
       </div>
       <button type="submit">Create</button>
