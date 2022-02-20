@@ -13,7 +13,7 @@ describe("Given a Robots component", () => {
   });
 
   describe("When it's renedered with two robots", () => {
-    test("Then it should show two robots with 3 list elements each", () => {
+    test("Then it should show two robots", () => {
       const robots = [
         {
           name: "Robotin",
@@ -36,7 +36,7 @@ describe("Given a Robots component", () => {
           id: 2,
         },
       ];
-      const expectedLenght = 2 + 2 * 3;
+      const expectedLenght = 2;
 
       render(<Robots robots={robots} />);
       const robotsList = screen.getByRole("list", { name: "robots" });
