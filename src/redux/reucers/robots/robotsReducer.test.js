@@ -46,6 +46,20 @@ describe("Given a robots reducer", () => {
       expect(newRobots).toHaveLength(expectedLength);
     });
   });
+  describe("When it's called with an array of robots and an action with type delete robot and a matching _id", () => {
+    test("Then it should return a new robots array without the robot with matching id", () => {
+      const robots = [{ _id: 2 }, { _id: 4 }];
+      const idToDelete = 2;
+      const expectedLength = 1;
+      const expectedRemovedRobot = { _id: 2 };
+      const action = deleteRobotAction(idToDelete);
+
+      const newRobots = robotsReducer(robots, action);
+
+      expect(newRobots).not.toContain(expectedRemovedRobot);
+      expect(newRobots).toHaveLength(expectedLength);
+    });
+  });
 
   describe("When it's called with an array of robots and an aciton with type update and a robot with matching id modified", () => {
     test("Then it should return a new robots array with the modified robot", () => {

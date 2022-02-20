@@ -3,7 +3,14 @@ import userEvent from "@testing-library/user-event";
 import { renderInStore } from "../../setupTests";
 import NewRobot from "./NewRobot";
 
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+}));
+
 describe("Given a NewRobot component", () => {
+  beforeEach(() => jest.resetAllMocks());
   describe("When a user selects the name label and types", () => {
     test("Then the input value should be the typed string", () => {
       const typedString = "joselito";
@@ -62,9 +69,8 @@ describe("Given a NewRobot component", () => {
       fireEvent.change(date, {
         target: { value: "2020-01-15" },
       });
-      const button = screen.getByRole("button", { name: /create/i });
 
-      await waitFor(() => expect(button).not.toBeDisabled());
+      expect(mockDispatch).not.toHaveBeenCalled();
     });
   });
 });
