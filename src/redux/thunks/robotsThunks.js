@@ -7,7 +7,7 @@ import {
 
 export const loadRobotsTunk = async (dispatch) => {
   const response = await fetch(process.env.REACT_APP_API_URL);
-  const robots = await response.json();
+  const { robots } = await response.json();
   if (!response.ok) return;
 
   dispatch(loadRobotsAciton(robots));
