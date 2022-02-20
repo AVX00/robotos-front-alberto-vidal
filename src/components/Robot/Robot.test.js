@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { renderInStore } from "../../setupTests";
 import Robot from "./Robot";
 
 describe("Given a Robot Component", () => {
@@ -7,7 +8,7 @@ describe("Given a Robot Component", () => {
       const name = "robotin";
       const robot = { name, stats: {} };
 
-      render(<Robot robot={robot} />);
+      renderInStore(<Robot robot={robot} />);
       const robotName = screen.queryByRole("heading", { name });
 
       expect(robotName).toBeInTheDocument();
@@ -17,7 +18,7 @@ describe("Given a Robot Component", () => {
       const name = "joselui";
       const robot = { name, stats: {} };
 
-      render(<Robot robot={robot} />);
+      renderInStore(<Robot robot={robot} />);
       const image = screen.queryByRole("img", { name });
 
       expect(image).toBeInTheDocument();
@@ -26,7 +27,7 @@ describe("Given a Robot Component", () => {
     test("Then it should render the list of stats provided", () => {
       const robot = { name: "", stats: { speed: 2, resistance: 3, date: 4 } };
 
-      render(<Robot robot={robot} />);
+      renderInStore(<Robot robot={robot} />);
       const stats = screen.getByRole("list", { name: "stats" });
       const speed = screen.getByText(`Speed: ${robot.stats.speed}`);
 

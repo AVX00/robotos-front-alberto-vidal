@@ -1,10 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
+import { renderInStore } from "../../setupTests";
 import Robots from "./Robots";
 
 describe("Given a Robots component", () => {
   describe("When it's rendered", () => {
     test("Then it should show a list of robots", () => {
-      render(<Robots robots={[]} />);
+      renderInStore(<Robots robots={[]} />);
 
       const robotsList = screen.queryByRole("list", { name: "robots" });
 
@@ -38,7 +39,7 @@ describe("Given a Robots component", () => {
       ];
       const expectedLenght = 2;
 
-      render(<Robots robots={robots} />);
+      renderInStore(<Robots robots={robots} />);
       const robotsList = screen.getByRole("list", { name: "robots" });
       const { getAllByRole } = within(robotsList);
       const robotsListItems = getAllByRole("listitem");
