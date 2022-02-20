@@ -1,6 +1,13 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderInStore } from "../../setupTests";
 import Robot from "./Robot";
+
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+}));
 
 describe("Given a Robot Component", () => {
   describe("When it's rendered", () => {
@@ -33,6 +40,18 @@ describe("Given a Robot Component", () => {
 
       expect(stats).toBeInTheDocument();
       expect(speed).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered witha robot and clicked on the delete button", () => {
+    test("Then an action should be performed", () => {
+      const robot = { name: "", stats: { speed: 2, resistance: 3, date: 4 } };
+
+      renderInStore(<Robot robot={robot} />);
+      const deleteButton = screen.queryByRole("link", /delete/i);
+      userEvent.click(deleteButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });

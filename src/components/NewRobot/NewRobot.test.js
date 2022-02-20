@@ -10,7 +10,6 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("Given a NewRobot component", () => {
-  beforeEach(() => jest.resetAllMocks());
   describe("When a user selects the name label and types", () => {
     test("Then the input value should be the typed string", () => {
       const typedString = "joselito";
