@@ -15,11 +15,14 @@ export const loadRobotsTunk = async (dispatch) => {
 
 export const createRobotThunkCreator = (robot) => async (dispatch) => {
   const robotJson = JSON.stringify(robot);
-  const response = await fetch(`${process.env.REACT_APP_API_URL}create`, {
-    method: "post",
-    headers: { "content-type": "aplication/json" },
-    body: robotJson,
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}create?token=${process.env.REACT_APP_TOKEN}`,
+    {
+      method: "post",
+      headers: { "content-type": "aplication/json" },
+      body: robotJson,
+    }
+  );
 
   if (!response.ok) return;
   const newRobot = await response.json();
@@ -27,9 +30,12 @@ export const createRobotThunkCreator = (robot) => async (dispatch) => {
 };
 
 export const deseteRobotThunkCreator = (id) => async (dispatch) => {
-  const response = await fetch(`${process.env.REACT_APP_API_URL}delete/${id}`, {
-    method: "delete",
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}delete/${id}?token=${process.env.REACT_APP_TOKEN}`,
+    {
+      method: "delete",
+    }
+  );
 
   if (!response.ok) return;
   dispatch(deleteRobotAction(id));
@@ -37,11 +43,14 @@ export const deseteRobotThunkCreator = (id) => async (dispatch) => {
 
 export const updateRobotThunkCreator = (robot) => async (dispatch) => {
   const robotJson = JSON.stringify(robot);
-  const response = await fetch(`${process.env.REACT_APP_API_URL}update/`, {
-    method: "put",
-    headers: { "content-type": "aplication/json" },
-    body: robotJson,
-  });
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}update/?token=${process.env.REACT_APP_TOKEN}`,
+    {
+      method: "put",
+      headers: { "content-type": "aplication/json" },
+      body: robotJson,
+    }
+  );
 
   if (!response.ok) return;
   const updatedRobot = await response.json();
