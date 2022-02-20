@@ -2,9 +2,9 @@ import Robot from "../Robot/Robot";
 
 const Robots = ({ robots }) => {
   return (
-    <ul>
+    <ul title="robots">
       {robots.map((robot) => (
-        <Robot robot={robot} />
+        <Robot key={robot.id} robot={robot} />
       ))}
     </ul>
   );
