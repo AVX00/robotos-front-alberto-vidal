@@ -20,6 +20,7 @@
 sonar.key
 sonar-project.properties
 .scannerwork
+.env
 
 npm-debug.log*
 yarn-debug.log*
