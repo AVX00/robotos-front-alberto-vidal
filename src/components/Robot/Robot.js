@@ -1,15 +1,17 @@
 import "@fontsource/noto-sans-jp";
+import dateFormat from "dateformat";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { deleteRobotThunkCreator } from "../../redux/thunks/robotsThunks";
 
 const Card = styled.li`
-  width: 340px;
+  width: 32%;
+  margin-bottom: 2%;
+  position: relative;
   height: 500px;
   transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 4px;
   background-color: #0f0f0f;
-  margin: 0 auto;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -140,7 +142,10 @@ const Robot = ({
         <ul title="stats" className="stats-list">
           <li className="stat">{`Speed: ${speed}`}</li>
           <li className="stat">{`Resistance: ${resistance}`}</li>
-          <li className="stat">{`Fabrication: ${date}`}</li>
+          <li className="stat">{`Fabrication: ${dateFormat(
+            date,
+            "isoDate"
+          )}`}</li>
         </ul>
         <Delete
           className="btn-delete"
