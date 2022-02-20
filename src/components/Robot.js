@@ -84,22 +84,25 @@ const Card = styled.li`
   }
 `;
 
-const Robot = () => {
+const Robot = ({
+  robot: {
+    name,
+    img,
+    stats: { speed, resistance, date },
+  },
+}) => {
   return (
     <Card>
       <div className="img-wraper">
-        <img
-          src="https://i.pinimg.com/564x/d5/fe/07/d5fe075620b54caa6786aec6242fde9c.jpg"
-          alt="robot"
-        />
+        <img src={img} alt={name} />
       </div>
 
       <div className="stats">
-        <h2>Robotin</h2>
+        <h2>{name}</h2>
         <ul>
-          <li>speed</li>
-          <li>resistance</li>
-          <li>date</li>
+          <li>{`speed: ${speed}`}</li>
+          <li>{`resistance: ${resistance}`}</li>
+          <li>{`date: ${date}`}</li>
         </ul>
       </div>
     </Card>
