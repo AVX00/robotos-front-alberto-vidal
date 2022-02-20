@@ -53,15 +53,15 @@ describe("Given a NewRobot component", () => {
   });
 
   describe("When all inputs are filled", () => {
-    test("Then the submit button shouldn't be disabled", async () => {
+    test("Then the submit button shouldn't be disabled and it's action performed on click", async () => {
       const typedString = "joselito";
 
       renderInStore(<NewRobot />);
-      const name = screen.queryByLabelText(/robot name/i);
-      const image = screen.queryByLabelText(/image url/i);
-      const speed = screen.queryByLabelText(/speed/i);
-      const resistance = screen.queryByLabelText(/resistance/i);
-      const date = screen.queryByLabelText(/fabrication date/i);
+      const name = screen.getByLabelText(/name/i);
+      const image = screen.getByLabelText(/image url/i);
+      const speed = screen.getByLabelText(/speed/i);
+      const resistance = screen.getByLabelText(/resistance/i);
+      const date = screen.getByLabelText(/fabrication date/i);
       userEvent.type(name, typedString);
       userEvent.type(image, typedString);
       userEvent.selectOptions(speed, "4");
@@ -69,8 +69,12 @@ describe("Given a NewRobot component", () => {
       fireEvent.change(date, {
         target: { value: "2020-01-15" },
       });
+      userEvent.type(name, " htdthd");
+      const button = screen.queryByRole("button", /create/i);
+      userEvent.click(button);
 
-      expect(mockDispatch).not.toHaveBeenCalled();
+      expect(button).not.toBeDisabled();
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });

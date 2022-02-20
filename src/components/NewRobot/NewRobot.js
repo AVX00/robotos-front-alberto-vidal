@@ -43,6 +43,7 @@ const NewRobot = () => {
   const [formData, setFormData] = useState(blankData);
   const handleDataChange = (event) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
+    console.log(formData);
   };
 
   const isFilled =
