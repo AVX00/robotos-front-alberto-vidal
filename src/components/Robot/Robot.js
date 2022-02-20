@@ -49,6 +49,7 @@ const Card = styled.li`
       & > .stat {
         position: relative;
         line-height: 27px;
+        display: none;
       }
       & > .stat::before {
         content: "一";
@@ -79,6 +80,9 @@ const Card = styled.li`
     font-size: 20px;
     display: flex;
     opacity: 1;
+  }
+  &:hover > .stats > .stats-list > .stat {
+    display: block;
   }
   &:hover > .img-wraper {
     max-height: 220px;
