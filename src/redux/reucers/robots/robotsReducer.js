@@ -1,6 +1,6 @@
 import robotsActionTypes from "../../actions/robots/robotsActionTypes";
 
-const robotsReducer = (robots, action) => {
+const robotsReducer = (robots = [], action = {}) => {
   let newRobots;
 
   switch (action.type) {
@@ -11,7 +11,7 @@ const robotsReducer = (robots, action) => {
       newRobots = robots.filter((robot) => robot.id !== action.id);
       break;
     case robotsActionTypes.loadRobots:
-      newRobots = [...robots];
+      newRobots = action.robots;
       break;
     case robotsActionTypes.updateRobot:
       newRobots = robots.map((robot) =>
