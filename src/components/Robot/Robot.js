@@ -116,9 +116,9 @@ const Robot = ({
   },
 }) => {
   const dispatch = useDispatch();
-  const deleteOnClickCreator = (id) => (event) => {
+  const deleteOnClick = (event) => {
     event.preventDefault();
-    dispatch(deleteRobotThunkCreator(id));
+    dispatch(deleteRobotThunkCreator(id ?? _id));
   };
 
   return (
@@ -134,11 +134,7 @@ const Robot = ({
           <li className="stat">{`Resistance: ${resistance}`}</li>
           <li className="stat">{`Fabrication: ${formatDate(date)}`}</li>
         </ul>
-        <Delete
-          className="btn-delete"
-          href="delete"
-          onClick={deleteOnClickCreator(id ?? _id)}
-        >
+        <Delete className="btn-delete" href="delete" onClick={deleteOnClick}>
           Delete
         </Delete>
       </div>
