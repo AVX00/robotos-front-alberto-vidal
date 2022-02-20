@@ -15,7 +15,7 @@ export const loadRobotsTunk = async (dispatch) => {
 
 export const createRobotThunkCreator = (robot) => async (dispatch) => {
   const response = await fetch(
-    `http://localhost:5555/robots/create?token=${process.env.REACT_APP_TOKEN}`,
+    `${process.env.REACT_APP_API_URL}create?token=${process.env.REACT_APP_TOKEN}`,
     {
       method: "post",
       mode: "cors",
