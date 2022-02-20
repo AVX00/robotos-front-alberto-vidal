@@ -29,14 +29,13 @@ export const createRobotThunkCreator = (robot) => async (dispatch) => {
   dispatch(createRobotAction(newRobot));
 };
 
-export const deseteRobotThunkCreator = (id) => async (dispatch) => {
+export const deleteRobotThunkCreator = (id) => async (dispatch) => {
   const response = await fetch(
     `${process.env.REACT_APP_API_URL}delete/${id}?token=${process.env.REACT_APP_TOKEN}`,
     {
       method: "delete",
     }
   );
-
   if (!response.ok) return;
   dispatch(deleteRobotAction(id));
 };
