@@ -27,6 +27,13 @@ const NewRobot = () => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
 
+  const isFilled =
+    formData["fabrication-date"] &&
+    formData.img &&
+    formData.name &&
+    formData.resistance &&
+    formData.resistance;
+
   const dispatch = useDispatch();
 
   const handleSubmitEvent = (event) => {
@@ -109,7 +116,9 @@ const NewRobot = () => {
         <label htmlFor="fabrication-date">Fabrication Date</label>
         <input id="fabrication-date" type="date" onChange={handleDataChange} />
       </div>
-      <button type="submit">Create</button>
+      <button type="submit" disabled={!isFilled}>
+        Create
+      </button>
     </RobotForm>
   );
 };
