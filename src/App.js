@@ -1,4 +1,5 @@
 import dateFormat from "dateformat";
+import NewRobot from "./components/NewRobot/NewRobot";
 import Robots from "./components/Robots/Robots";
 
 const robotines = [
@@ -35,7 +36,12 @@ const robotines = [
 ];
 
 function App() {
-  return <Robots robots={robotines} />;
+  return (
+    <>
+      <NewRobot />
+      <Robots robots={robotines} />
+    </>
+  );
 }
 
 export default App;
