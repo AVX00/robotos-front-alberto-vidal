@@ -1,6 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import HomePage from "./Pages/HomePage";
+import RobotFormPage from "./Pages/RobotFormPage";
 
 const Header = styled.header`
   width: calc(100% - 40px);
@@ -35,7 +36,7 @@ function App() {
       </Header>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/new" element={<HomePage />} />
+        <Route path="/new" element={<RobotFormPage />} />
       </Routes>
     </>
   );
