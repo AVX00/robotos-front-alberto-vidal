@@ -1,5 +1,7 @@
 import "@fontsource/noto-sans-jp";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { deleteRobotThunkCreator } from "../../redux/thunks/robotsThunks";
 
 const Card = styled.li`
   width: 340px;
@@ -33,6 +35,7 @@ const Card = styled.li`
   }
 
   & > .stats {
+    position: relative;
     color: #f0f0f0;
     padding: 0 40px;
     height: 50%;
@@ -92,15 +95,40 @@ const Card = styled.li`
   &:hover > .img-wraper > img {
     transform: scale(2);
   }
+
+  &:hover > .stats > .btn-delete {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+  }
+`;
+
+const Delete = styled.a`
+  background-color: #9b2226;
+  text-decoration: none;
+  color: #f0f0f0;
+  border-radius: 4px;
+  padding: 5px;
+  position: absolute;
+  right: 10px;
+  top: 28px;
+  opacity: 0;
 `;
 
 const Robot = ({
   robot: {
     name,
     img,
+    id,
+    _id,
     stats: { speed, resistance, "fabrication-date": date },
   },
 }) => {
+  const dispatch = useDispatch();
+  const deleteOnClickCreator = (id) => (event) => {
+    event.preventDefault();
+    dispatch(deleteRobotThunkCreator(id));
+  };
+
   return (
     <Card>
       <div className="img-wraper">
@@ -114,6 +142,13 @@ const Robot = ({
           <li className="stat">{`Resistance: ${resistance}`}</li>
           <li className="stat">{`Fabrication: ${date}`}</li>
         </ul>
+        <Delete
+          className="btn-delete"
+          href="delete"
+          onClick={deleteOnClickCreator(id ?? _id)}
+        >
+          Delete
+        </Delete>
       </div>
     </Card>
   );
