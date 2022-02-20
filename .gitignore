@@ -17,6 +17,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+sonar.key
+sonar-project.properties
+.scannerwork
 
 npm-debug.log*
 yarn-debug.log*
