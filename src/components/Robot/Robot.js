@@ -74,7 +74,7 @@ const Card = styled.li`
   }
 
   &:hover > .stats > .stats-list {
-    transition: opacity 0.5s ease-in;
+    transition: opacity 1s ease-in;
     height: 140px;
     font-size: 20px;
     display: flex;
