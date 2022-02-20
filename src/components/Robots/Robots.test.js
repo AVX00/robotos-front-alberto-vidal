@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import { renderInStore } from "../../setupTests";
 import Robots from "./Robots";
 

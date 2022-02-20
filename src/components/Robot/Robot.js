@@ -4,19 +4,6 @@ import styled from "styled-components";
 import { deleteRobotThunkCreator } from "../../redux/thunks/robotsThunks";
 
 const Card = styled.li`
-  width: 340px;
-  height: 500px;
-  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 4px;
-  background-color: #0f0f0f;
-  margin: 0 auto;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
-    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
-    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
-
   & > .img-wraper > img {
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     width: 100%;
@@ -114,6 +101,11 @@ const Delete = styled.a`
   opacity: 0;
 `;
 
+const formatDate = (date) => {
+  const dateObject = new Date(date);
+  return `${dateObject.getDay()}/${dateObject.getMonth()}/${dateObject.getFullYear()}`;
+};
+
 const Robot = ({
   robot: {
     name,
@@ -130,7 +122,7 @@ const Robot = ({
   };
 
   return (
-    <Card>
+    <Card className="robot-card">
       <div className="img-wraper">
         <img src={img} alt={name} />
       </div>
@@ -140,7 +132,7 @@ const Robot = ({
         <ul title="stats" className="stats-list">
           <li className="stat">{`Speed: ${speed}`}</li>
           <li className="stat">{`Resistance: ${resistance}`}</li>
-          <li className="stat">{`Fabrication: ${date}`}</li>
+          <li className="stat">{`Fabrication: ${formatDate(date)}`}</li>
         </ul>
         <Delete
           className="btn-delete"
